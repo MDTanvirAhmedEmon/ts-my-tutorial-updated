@@ -22,6 +22,19 @@ const user: {
     phone: 484545434355468489498
 };
 
+// Object
+const user1: {
+    name: string,
+    company: "programming hero",  // fixed value => literal type
+    age: number,
+    phone?: number,
+} = {
+    name: 'Emon',
+    company: 'programming hero',
+    age: 23,
+    phone: 484545434355468489498
+};
+
 user.name = 'Himel'
 
 console.log(user)
