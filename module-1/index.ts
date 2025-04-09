@@ -3,9 +3,8 @@ console.log(course)
 // Array
 const roll: number[] = [10, 11, 12];
 
-const emon : [string, number] = ['TAEmon', 12];
-
-emon.push('web developer');
+// Tuple  => means an array with different data types
+const emon: [string, number] = ['TAEmon', 12];
 
 console.log(emon)
 
@@ -23,23 +22,23 @@ const user: {
     phone: 484545434355468489498
 };
 
-user.name='Himel'
+user.name = 'Himel'
 
 console.log(user)
 
 // Function
-function add(num1:number, num2:number):number {
+function add(num1: number, num2: number): number {
     return (num1 + num2);
 }
 
 console.log(add(2, 3))
 
 
-const sayHi = (zipCode: number, ...friend:string[]) =>{
-    console.log(zipCode,friend)
+const sayHi = (zipCode: number, ...friend: string[]) => {
+    console.log(zipCode, friend)
 }
 
-sayHi(1313, 'Emon','Himel','Abir','Shihab')
+sayHi(1313, 'Emon', 'Himel', 'Abir', 'Shihab')
 
 
 // aliases
@@ -49,7 +48,7 @@ type LocalFriend = {
     address: string
 }
 
-const localFriend: LocalFriend ={
+const localFriend: LocalFriend = {
     name: 'Azhar',
     age: 23,
     address: 'Alinogor'
@@ -63,10 +62,10 @@ type NoobDeveloper = {
 type JuniorDeveloper = NoobDeveloper & {
     expertise: string,
     experience: number,
-    level: 'Entry'| 'Mid'|'High', // union types system for fixed multiple values
+    level: 'Entry' | 'Mid' | 'High', // union types system for fixed multiple values
 }
 
-const newDeveloper: NoobDeveloper | JuniorDeveloper ={
+const newDeveloper: NoobDeveloper | JuniorDeveloper = {
     name: 'abir',
     expertise: 'javascript',
     experience: 6,
@@ -74,7 +73,7 @@ const newDeveloper: NoobDeveloper | JuniorDeveloper ={
 }
 
 // aliases with function
-type OperationType = (x:number, y:number) => number;
+type OperationType = (x: number, y: number) => number;
 const calculate = (
     num1: number,
     num2: number,
