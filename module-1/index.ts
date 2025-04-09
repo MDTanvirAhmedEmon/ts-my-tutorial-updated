@@ -11,10 +11,10 @@ console.log(emon)
 
 // Object
 const user: {
-    name: string,
+    readonly name: string, // readonly => can't change the value of this property
     company: string,
     age: number,
-    phone?: number,
+    phone?: number, // optional property
 } = {
     name: 'Emon',
     company: 'GP',
@@ -22,7 +22,9 @@ const user: {
     phone: 484545434355468489498
 };
 
-// Object
+console.log(user)
+
+
 const user1: {
     name: string,
     company: "programming hero",  // fixed value => literal type
@@ -35,9 +37,7 @@ const user1: {
     phone: 484545434355468489498
 };
 
-user.name = 'Himel'
 
-console.log(user)
 
 // Function
 function add(num1: number, num2: number): number {
