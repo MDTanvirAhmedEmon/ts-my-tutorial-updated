@@ -61,7 +61,7 @@ const emonInfo: {
     company: 'programming hero',
 }
 // name alias
-const {name: emonName, company} = emonInfo;
+const { name: emonName, company } = emonInfo;
 
 
 // type alias
@@ -77,11 +77,11 @@ const localFriend: LocalFriend = {
     address: 'Alinogor'
 }
 
-// union and intersection
+// union type and intersection
 type NoobDeveloper = {
     name: string
 }
-// intersection
+// intersection &
 type JuniorDeveloper = NoobDeveloper & {
     expertise: string,
     experience: number,
@@ -106,3 +106,16 @@ const calculate = (
 };
 calculate(10, 20, (x, y) => x + y);
 calculate(10, 20, (x, y) => x - y);
+
+// nullish coalescing operator
+// null / undefined ----> decision making
+// do not work with falsy values like 0, '', false, NaN only work with null and undefined
+const isAuthenticatedUser = false;
+const userName = isAuthenticatedUser ?? 'Guest';
+// if isAuthenticatedUser is null or undefined then userName will be 'Guest' otherwise it will be isAuthenticatedUser value.
+
+const throwError = (message: string): never => {
+    throw new Error(message)
+} // never type is used for function that will never return a value
+throwError('This is an error message')
+
