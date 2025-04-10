@@ -4,13 +4,27 @@ ownerName = 'Tanvir Ahmed Emon';
 (ownerName as string).length;
 <string>ownerName.length;
 
+interface villageInterface {
+    zip: number,
+    river: string,
+}
+
+interface emonInterface extends villageInterface {
+    zip: number,
+    river: string,
+}
+
+
+// const rollNumber: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+// const rollNumber: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// array using type alias
+// type genericArray= Array<number>
+// const rollNumber: genericArray = [1, 2, 3, 4, 5, 6, 7, 8];
+
 // generic with type aliases or we can call generic type
 // =====================================================================
-type genericArray<T> = Array<T>
-
-// const rollNumber: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
-// const studentName: string[] = ['Abir', 'Shihab', 'Shanto'];
-
+type genericArray<T> = Array<T> // here T is a generic type and it's general name is param
 const rollNumber: genericArray<number> = [1, 2, 3, 4, 5, 6, 7, 8];
 const studentName: genericArray<string> = ['Abir', 'Shihab', 'Shanto'];
 
@@ -74,6 +88,18 @@ const localPeople: peopleInterface<string> = {
     village: 'Mithapur',
 };
 
+// generic in type
+type PeopleType<T> = {
+    name: string;
+    village: T;
+};
+
+const localPeople5: PeopleType<string> = {
+    name: 'Aziz',
+    village: 'Mithapur',
+};
+
+
 // const localPeople2: peopleInterface<object> = {
 //     name: 'Apu',
 //     village: {
@@ -94,7 +120,9 @@ const localPeople2: peopleInterface<villageInterface> = {
     }
 }
 
-interface peopleInfo <T, U>{
+interface peopleInfo<T, U = null> {
+    // default value null is set here for U, so if we don't pass U then it will be null by default.
+    // but if we pass U then it will be the value we passed.
     name: string,
     id: number,
     job: T,
@@ -124,23 +152,24 @@ const peopleFullInfo2: peopleInfo<string, null> = {
 // =========================================================================
 // generic in function
 
-const addnumber = <T>(param: T) : T[] => {
+const addnumber = <T>(param: T): T[] => {
     return [param]
 };
 
 const result = addnumber<number>(12)
 
-const addnumber2 = <T, U>(param1: T, param2: U) : [T, U] => {
+const addnumber2 = <T, U>(param1: T, param2: U): [T, U] => {
     return [param1, param2]
 };
 addnumber2<string, number>('name', 13)
+
 // =========================================================================
 // generic constraints
 
-const addFriend = <T extends {name: string, age: number}> (fdInfo: T) => {
+const addFriend = <T extends { name: string, age: number }>(fdInfo: T) => {
     // extends diye name and age deya ase tai object pass korar somoy object er vitore ei property gula must dite hobe.
     const village = 'Alinagar';
-    const newFdInfo = {...fdInfo, village};
+    const newFdInfo = { ...fdInfo, village };
     return newFdInfo;
 };
 
@@ -159,6 +188,7 @@ const fdInfoFirst = {
 };
 
 addFriend<fdInfoType>(fdInfoFirst);
+
 // ============================================
 // ============================================
 
@@ -168,17 +198,30 @@ type personType = {
     address: string,
 }
 
-type newType = 'name'|'age'|'address'; // literal type
+type newType = 'name' | 'age' | 'address';
 
-type newTypeUsingKeyOf = keyof personType;
+type newTypeUsingKeyOf = keyof personType; // keyof does the same thing as above 'name' | 'age' | 'address'
 
-function getProperty<T , U extends keyof T> (object: T, key: U) {
+// const user = {
+//     name: 'Emon',
+//     age: 23
+// }
+
+// user['age'] // 23
+// do the same thing using below function
+
+// function getProperty(object, key) {
+//     console.log(object[key]);
+// }
+
+function getProperty<T, U extends keyof T>(object: T, key: U) {
     console.log(object[key]);
 }
 
-getProperty({name:'Emon', age: 23}, 'age')
+getProperty({ name: 'Emon', age: 23 }, 'age')
 
-
+// ============================================
+// Need To See This Part Again
 // ============================================
 // Conditional Type
 
@@ -193,10 +236,10 @@ type habibiFriend = {
     wife: number,
 };
 
-type checkHabibiProperty <T> = T extends {property: string} ? true : false;
+type checkHabibiProperty<T> = T extends { property: string } ? true : false;
 type checkHabibiPropertyFinally = checkHabibiProperty<habibiFriend>;
 
-type checkHabibiProperty2 <T, U> = U extends keyof T ? true : false;
+type checkHabibiProperty2<T, U> = U extends keyof T ? true : false;
 type checkHabibiPropertyFinally2 = checkHabibiProperty2<habibiFriend, 'property'>;
 
 // remove
@@ -216,25 +259,38 @@ type AreaNumber = {
 type A = AreaNumber['height'] // Look Up Types
 
 type Area = {
-    [key in 'name' | 'address'] : string
+    [key in 'name' | 'address']: string
     // mapping
 };
 
 type newAreaNumber = {
-    [key in keyof AreaNumber] : number; 
+    [key in keyof AreaNumber]: number;
     // Mapping diye ekta type theke new ekta type make korte partesi 
 };
+
 type newAreaNumber2 = {
-    [key in keyof AreaNumber] : AreaNumber[key]; 
+    [key in keyof AreaNumber]: AreaNumber[key];
 };
 
 type Area2<T> = {
-    [key in keyof T] : T[key]
+    [key in keyof T]: T[key]
 };
 
-const areaResult: Area2<{name: string, age: number}> = {name: 'emon', age: 23}
+const areaResult: Area2<{ name: string, age: number }> = { name: 'emon', age: 23 }
 
+// ========================
+// Utility Type
+// Pick
 
+type person = {
+    name: string;
+    phone: number;
+    married: boolean;
+}
 
-
+type contact = Pick<person, 'name' | 'phone'> // pick the properties from person type
+type contact2 = Omit<person, 'married'> // married bade sob nibe
+type optional = Partial<person> // to make all properties optional
+type required = Required<person> // to make all properties required
+type readonly = Readonly<person> // to make readonly all properties
 
