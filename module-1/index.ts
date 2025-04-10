@@ -53,8 +53,18 @@ const sayHi = (zipCode: number, ...friend: string[]) => { // rest operator
 
 sayHi(1313, 'Emon', 'Himel', 'Abir', 'Shihab')
 
+const emonInfo: {
+    name: string;
+    company: string;
+} = {
+    name: 'emon',
+    company: 'programming hero',
+}
+// name alias
+const {name: emonName, company} = emonInfo;
 
-// aliases
+
+// type alias
 type LocalFriend = {
     name: string,
     age: number,
