@@ -22,7 +22,7 @@ interface emonInterface extends villageInterface {
 // type genericArray= Array<number>
 // const rollNumber: genericArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// generic with type aliases or we can call generic type
+// generic with type alias or we can call generic type
 // =====================================================================
 type genericArray<T> = Array<T> // here T is a generic type and it's general name is param
 const rollNumber: genericArray<number> = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -221,7 +221,6 @@ function getProperty<T, U extends keyof T>(object: T, key: U) {
 getProperty({ name: 'Emon', age: 23 }, 'age')
 
 // ============================================
-// Need To See This Part Again
 // ============================================
 // Conditional Type
 
@@ -293,4 +292,19 @@ type contact2 = Omit<person, 'married'> // married bade sob nibe
 type optional = Partial<person> // to make all properties optional
 type required = Required<person> // to make all properties required
 type readonly = Readonly<person> // to make readonly all properties
+
+// dynamic type
+//================
+type dynamicKey = Record<string, string> // key and value both are string
+// in dynamic type key always string
+
+const dynamicKeyResult: dynamicKey = {
+    a: 'Emon',
+    b: 'Azhar',
+    c: 'Shihab',
+    d: 'Shanto',
+    e: 'Himel',
+    f: 'Abir',
+    g: 'Sajal',
+} // auto complete the key and value as string
 
