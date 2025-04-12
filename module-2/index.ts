@@ -4,16 +4,13 @@ ownerName = 'Tanvir Ahmed Emon';
 (ownerName as string).length;
 <string>ownerName.length;
 
-interface villageInterface {
-    zip: number,
-    river: string,
+interface Animal {
+    species: string;
+  }
+  
+interface Dog extends Animal { // Now, Dog has both species (from Animal) and breed.
+    breed: string;
 }
-
-interface emonInterface extends villageInterface {
-    zip: number,
-    river: string,
-}
-
 
 // const rollNumber: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 // const rollNumber: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
