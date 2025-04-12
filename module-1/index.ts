@@ -85,7 +85,7 @@ type NoobDeveloper = {
 type JuniorDeveloper = NoobDeveloper & {
     expertise: string,
     experience: number,
-    level: 'Entry' | 'Mid' | 'High', // union types system for fixed multiple values
+    level: 'Entry' | 'Mid' | 'High', // union types
 }
 
 const newDeveloper: NoobDeveloper | JuniorDeveloper = {
