@@ -116,6 +116,6 @@ const userName = isAuthenticatedUser ?? 'Guest';
 
 const throwError = (message: string): never => {
     throw new Error(message)
-} // never type is used for function that will never return a value
+} // never type is used for function that will never return a value also can use viod
 throwError('This is an error message')
 
